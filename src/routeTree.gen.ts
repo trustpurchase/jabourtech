@@ -18,6 +18,7 @@ import { Route as AuthenticatedBonsCommandeRouteImport } from './routes/_authent
 import { Route as AuthenticatedBonsReceptionRouteImport } from './routes/_authenticated/bons-reception'
 import { Route as AuthenticatedClientsRouteImport } from './routes/_authenticated/clients'
 import { Route as AuthenticatedDevisRouteImport } from './routes/_authenticated/devis'
+import { Route as AuthenticatedFacturesAchatRouteImport } from './routes/_authenticated/factures-achat'
 import { Route as AuthenticatedFournisseursRouteImport } from './routes/_authenticated/fournisseurs'
 import { Route as AuthenticatedProjetsRouteImport } from './routes/_authenticated/projets'
 import { Route as AuthenticatedTableauDeBordRouteImport } from './routes/_authenticated/tableau-de-bord'
@@ -69,6 +70,12 @@ const AuthenticatedDevisRoute = AuthenticatedDevisRouteImport.update({
   path: '/devis',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedFacturesAchatRoute =
+  AuthenticatedFacturesAchatRouteImport.update({
+    id: '/factures-achat',
+    path: '/factures-achat',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedFournisseursRoute =
   AuthenticatedFournisseursRouteImport.update({
     id: '/fournisseurs',
@@ -96,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/bons-reception': typeof AuthenticatedBonsReceptionRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/devis': typeof AuthenticatedDevisRoute
+  '/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
   '/projets': typeof AuthenticatedProjetsRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
@@ -109,6 +117,7 @@ export interface FileRoutesByTo {
   '/bons-reception': typeof AuthenticatedBonsReceptionRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/devis': typeof AuthenticatedDevisRoute
+  '/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
   '/projets': typeof AuthenticatedProjetsRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
@@ -124,6 +133,7 @@ export interface FileRoutesById {
   '/_authenticated/bons-reception': typeof AuthenticatedBonsReceptionRoute
   '/_authenticated/clients': typeof AuthenticatedClientsRoute
   '/_authenticated/devis': typeof AuthenticatedDevisRoute
+  '/_authenticated/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/_authenticated/fournisseurs': typeof AuthenticatedFournisseursRoute
   '/_authenticated/projets': typeof AuthenticatedProjetsRoute
   '/_authenticated/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/bons-reception'
     | '/clients'
     | '/devis'
+    | '/factures-achat'
     | '/fournisseurs'
     | '/projets'
     | '/tableau-de-bord'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/bons-reception'
     | '/clients'
     | '/devis'
+    | '/factures-achat'
     | '/fournisseurs'
     | '/projets'
     | '/tableau-de-bord'
@@ -166,6 +178,7 @@ export interface FileRouteTypes {
     | '/_authenticated/bons-reception'
     | '/_authenticated/clients'
     | '/_authenticated/devis'
+    | '/_authenticated/factures-achat'
     | '/_authenticated/fournisseurs'
     | '/_authenticated/projets'
     | '/_authenticated/tableau-de-bord'
@@ -242,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDevisRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/factures-achat': {
+      id: '/_authenticated/factures-achat'
+      path: '/factures-achat'
+      fullPath: '/factures-achat'
+      preLoaderRoute: typeof AuthenticatedFacturesAchatRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/fournisseurs': {
       id: '/_authenticated/fournisseurs'
       path: '/fournisseurs'
@@ -273,6 +293,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedBonsReceptionRoute: typeof AuthenticatedBonsReceptionRoute
   AuthenticatedClientsRoute: typeof AuthenticatedClientsRoute
   AuthenticatedDevisRoute: typeof AuthenticatedDevisRoute
+  AuthenticatedFacturesAchatRoute: typeof AuthenticatedFacturesAchatRoute
   AuthenticatedFournisseursRoute: typeof AuthenticatedFournisseursRoute
   AuthenticatedProjetsRoute: typeof AuthenticatedProjetsRoute
   AuthenticatedTableauDeBordRoute: typeof AuthenticatedTableauDeBordRoute
@@ -285,6 +306,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBonsReceptionRoute: AuthenticatedBonsReceptionRoute,
   AuthenticatedClientsRoute: AuthenticatedClientsRoute,
   AuthenticatedDevisRoute: AuthenticatedDevisRoute,
+  AuthenticatedFacturesAchatRoute: AuthenticatedFacturesAchatRoute,
   AuthenticatedFournisseursRoute: AuthenticatedFournisseursRoute,
   AuthenticatedProjetsRoute: AuthenticatedProjetsRoute,
   AuthenticatedTableauDeBordRoute: AuthenticatedTableauDeBordRoute,
