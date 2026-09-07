@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAppelsOffresRouteImport } from './routes/_authenticated/appels-offres'
 import { Route as AuthenticatedArticlesRouteImport } from './routes/_authenticated/articles'
+import { Route as AuthenticatedBonsCommandeRouteImport } from './routes/_authenticated/bons-commande'
 import { Route as AuthenticatedClientsRouteImport } from './routes/_authenticated/clients'
 import { Route as AuthenticatedDevisRouteImport } from './routes/_authenticated/devis'
 import { Route as AuthenticatedFournisseursRouteImport } from './routes/_authenticated/fournisseurs'
@@ -45,6 +46,12 @@ const AuthenticatedArticlesRoute = AuthenticatedArticlesRouteImport.update({
   path: '/articles',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedBonsCommandeRoute =
+  AuthenticatedBonsCommandeRouteImport.update({
+    id: '/bons-commande',
+    path: '/bons-commande',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedClientsRoute = AuthenticatedClientsRouteImport.update({
   id: '/clients',
   path: '/clients',
@@ -78,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/articles': typeof AuthenticatedArticlesRoute
+  '/bons-commande': typeof AuthenticatedBonsCommandeRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/devis': typeof AuthenticatedDevisRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
@@ -89,6 +97,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/articles': typeof AuthenticatedArticlesRoute
+  '/bons-commande': typeof AuthenticatedBonsCommandeRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/devis': typeof AuthenticatedDevisRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
@@ -102,6 +111,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/_authenticated/articles': typeof AuthenticatedArticlesRoute
+  '/_authenticated/bons-commande': typeof AuthenticatedBonsCommandeRoute
   '/_authenticated/clients': typeof AuthenticatedClientsRoute
   '/_authenticated/devis': typeof AuthenticatedDevisRoute
   '/_authenticated/fournisseurs': typeof AuthenticatedFournisseursRoute
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/appels-offres'
     | '/articles'
+    | '/bons-commande'
     | '/clients'
     | '/devis'
     | '/fournisseurs'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/appels-offres'
     | '/articles'
+    | '/bons-commande'
     | '/clients'
     | '/devis'
     | '/fournisseurs'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/_authenticated/appels-offres'
     | '/_authenticated/articles'
+    | '/_authenticated/bons-commande'
     | '/_authenticated/clients'
     | '/_authenticated/devis'
     | '/_authenticated/fournisseurs'
@@ -188,6 +201,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedArticlesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/bons-commande': {
+      id: '/_authenticated/bons-commande'
+      path: '/bons-commande'
+      fullPath: '/bons-commande'
+      preLoaderRoute: typeof AuthenticatedBonsCommandeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/clients': {
       id: '/_authenticated/clients'
       path: '/clients'
@@ -229,6 +249,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAppelsOffresRoute: typeof AuthenticatedAppelsOffresRoute
   AuthenticatedArticlesRoute: typeof AuthenticatedArticlesRoute
+  AuthenticatedBonsCommandeRoute: typeof AuthenticatedBonsCommandeRoute
   AuthenticatedClientsRoute: typeof AuthenticatedClientsRoute
   AuthenticatedDevisRoute: typeof AuthenticatedDevisRoute
   AuthenticatedFournisseursRoute: typeof AuthenticatedFournisseursRoute
@@ -239,6 +260,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAppelsOffresRoute: AuthenticatedAppelsOffresRoute,
   AuthenticatedArticlesRoute: AuthenticatedArticlesRoute,
+  AuthenticatedBonsCommandeRoute: AuthenticatedBonsCommandeRoute,
   AuthenticatedClientsRoute: AuthenticatedClientsRoute,
   AuthenticatedDevisRoute: AuthenticatedDevisRoute,
   AuthenticatedFournisseursRoute: AuthenticatedFournisseursRoute,
