@@ -44,10 +44,10 @@ function Presences() {
       const names = new Map(
         ((profiles.data ?? []) as { id: string; full_name: string }[]).map((p) => [p.id, p.full_name]),
       );
-      return ((att.data ?? []) as Record<string, unknown>[]).map((r) => ({
-        ...r,
-        nom: names.get(r['employee_id'] as string) || "—",
-      }));
+      return ((att.data ?? []) as Record<string, unknown>[]).map(
+        (r) => ({ ...r, nom: names.get(r['employee_id'] as string) || "—" }) as Record<string, unknown>,
+      );
+
     },
   });
 
