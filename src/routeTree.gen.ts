@@ -25,6 +25,7 @@ import { Route as AuthenticatedDevisRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedFacturesRouteImport } from './routes/_authenticated/factures'
 import { Route as AuthenticatedFacturesAchatRouteImport } from './routes/_authenticated/factures-achat'
 import { Route as AuthenticatedFournisseursRouteImport } from './routes/_authenticated/fournisseurs'
+import { Route as AuthenticatedPointageRouteImport } from './routes/_authenticated/pointage'
 import { Route as AuthenticatedPointageEcranRouteImport } from './routes/_authenticated/pointage-ecran'
 import { Route as AuthenticatedProjetsRouteImport } from './routes/_authenticated/projets'
 import { Route as AuthenticatedReglementsClientsRouteImport } from './routes/_authenticated/reglements-clients'
@@ -119,6 +120,11 @@ const AuthenticatedFournisseursRoute =
     path: '/fournisseurs',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedPointageRoute = AuthenticatedPointageRouteImport.update({
+  id: '/pointage',
+  path: '/pointage',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPointageEcranRoute =
   AuthenticatedPointageEcranRouteImport.update({
     id: '/pointage-ecran',
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/factures': typeof AuthenticatedFacturesRoute
   '/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
+  '/pointage': typeof AuthenticatedPointageRoute
   '/pointage-ecran': typeof AuthenticatedPointageEcranRoute
   '/projets': typeof AuthenticatedProjetsRoute
   '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByTo {
   '/factures': typeof AuthenticatedFacturesRoute
   '/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
+  '/pointage': typeof AuthenticatedPointageRoute
   '/pointage-ecran': typeof AuthenticatedPointageEcranRoute
   '/projets': typeof AuthenticatedProjetsRoute
   '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
@@ -226,6 +234,7 @@ export interface FileRoutesById {
   '/_authenticated/factures': typeof AuthenticatedFacturesRoute
   '/_authenticated/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/_authenticated/fournisseurs': typeof AuthenticatedFournisseursRoute
+  '/_authenticated/pointage': typeof AuthenticatedPointageRoute
   '/_authenticated/pointage-ecran': typeof AuthenticatedPointageEcranRoute
   '/_authenticated/projets': typeof AuthenticatedProjetsRoute
   '/_authenticated/reglements-clients': typeof AuthenticatedReglementsClientsRoute
@@ -252,6 +261,7 @@ export interface FileRouteTypes {
     | '/factures'
     | '/factures-achat'
     | '/fournisseurs'
+    | '/pointage'
     | '/pointage-ecran'
     | '/projets'
     | '/reglements-clients'
@@ -276,6 +286,7 @@ export interface FileRouteTypes {
     | '/factures'
     | '/factures-achat'
     | '/fournisseurs'
+    | '/pointage'
     | '/pointage-ecran'
     | '/projets'
     | '/reglements-clients'
@@ -301,6 +312,7 @@ export interface FileRouteTypes {
     | '/_authenticated/factures'
     | '/_authenticated/factures-achat'
     | '/_authenticated/fournisseurs'
+    | '/_authenticated/pointage'
     | '/_authenticated/pointage-ecran'
     | '/_authenticated/projets'
     | '/_authenticated/reglements-clients'
@@ -430,6 +442,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFournisseursRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/pointage': {
+      id: '/_authenticated/pointage'
+      path: '/pointage'
+      fullPath: '/pointage'
+      preLoaderRoute: typeof AuthenticatedPointageRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/pointage-ecran': {
       id: '/_authenticated/pointage-ecran'
       path: '/pointage-ecran'
@@ -496,6 +515,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedFacturesRoute: typeof AuthenticatedFacturesRoute
   AuthenticatedFacturesAchatRoute: typeof AuthenticatedFacturesAchatRoute
   AuthenticatedFournisseursRoute: typeof AuthenticatedFournisseursRoute
+  AuthenticatedPointageRoute: typeof AuthenticatedPointageRoute
   AuthenticatedPointageEcranRoute: typeof AuthenticatedPointageEcranRoute
   AuthenticatedProjetsRoute: typeof AuthenticatedProjetsRoute
   AuthenticatedReglementsClientsRoute: typeof AuthenticatedReglementsClientsRoute
@@ -519,6 +539,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedFacturesRoute: AuthenticatedFacturesRoute,
   AuthenticatedFacturesAchatRoute: AuthenticatedFacturesAchatRoute,
   AuthenticatedFournisseursRoute: AuthenticatedFournisseursRoute,
+  AuthenticatedPointageRoute: AuthenticatedPointageRoute,
   AuthenticatedPointageEcranRoute: AuthenticatedPointageEcranRoute,
   AuthenticatedProjetsRoute: AuthenticatedProjetsRoute,
   AuthenticatedReglementsClientsRoute: AuthenticatedReglementsClientsRoute,
