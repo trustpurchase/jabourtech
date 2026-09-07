@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedAppelsOffresRouteImport } from './routes/_authenticated/appels-offres'
 import { Route as AuthenticatedArticlesRouteImport } from './routes/_authenticated/articles'
 import { Route as AuthenticatedClientsRouteImport } from './routes/_authenticated/clients'
 import { Route as AuthenticatedDevisRouteImport } from './routes/_authenticated/devis'
@@ -33,6 +34,12 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAppelsOffresRoute =
+  AuthenticatedAppelsOffresRouteImport.update({
+    id: '/appels-offres',
+    path: '/appels-offres',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedArticlesRoute = AuthenticatedArticlesRouteImport.update({
   id: '/articles',
   path: '/articles',
@@ -69,6 +76,7 @@ const AuthenticatedTableauDeBordRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/articles': typeof AuthenticatedArticlesRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/devis': typeof AuthenticatedDevisRoute
@@ -79,6 +87,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/articles': typeof AuthenticatedArticlesRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/devis': typeof AuthenticatedDevisRoute
@@ -91,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/_authenticated/articles': typeof AuthenticatedArticlesRoute
   '/_authenticated/clients': typeof AuthenticatedClientsRoute
   '/_authenticated/devis': typeof AuthenticatedDevisRoute
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/appels-offres'
     | '/articles'
     | '/clients'
     | '/devis'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/appels-offres'
     | '/articles'
     | '/clients'
     | '/devis'
@@ -124,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/appels-offres'
     | '/_authenticated/articles'
     | '/_authenticated/clients'
     | '/_authenticated/devis'
@@ -160,6 +173,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/appels-offres': {
+      id: '/_authenticated/appels-offres'
+      path: '/appels-offres'
+      fullPath: '/appels-offres'
+      preLoaderRoute: typeof AuthenticatedAppelsOffresRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/articles': {
       id: '/_authenticated/articles'
@@ -207,6 +227,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAppelsOffresRoute: typeof AuthenticatedAppelsOffresRoute
   AuthenticatedArticlesRoute: typeof AuthenticatedArticlesRoute
   AuthenticatedClientsRoute: typeof AuthenticatedClientsRoute
   AuthenticatedDevisRoute: typeof AuthenticatedDevisRoute
@@ -216,6 +237,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAppelsOffresRoute: AuthenticatedAppelsOffresRoute,
   AuthenticatedArticlesRoute: AuthenticatedArticlesRoute,
   AuthenticatedClientsRoute: AuthenticatedClientsRoute,
   AuthenticatedDevisRoute: AuthenticatedDevisRoute,
