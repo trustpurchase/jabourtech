@@ -201,6 +201,56 @@ export type Database = {
           },
         ]
       }
+      attendances: {
+        Row: {
+          created_at: string
+          device_fingerprint: string | null
+          distance_meters: number | null
+          employee_id: string
+          id: string
+          project_id: string
+          scanned_latitude: number | null
+          scanned_longitude: number | null
+          timestamp: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          device_fingerprint?: string | null
+          distance_meters?: number | null
+          employee_id: string
+          id?: string
+          project_id: string
+          scanned_latitude?: number | null
+          scanned_longitude?: number | null
+          timestamp?: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          device_fingerprint?: string | null
+          distance_meters?: number | null
+          employee_id?: string
+          id?: string
+          project_id?: string
+          scanned_latitude?: number | null
+          scanned_longitude?: number | null
+          timestamp?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendances_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       bons_commande: {
         Row: {
           created_at: string
@@ -1141,6 +1191,7 @@ export type Database = {
           longitude: number | null
           maitre_ouvrage: string | null
           montant_marche: number
+          qr_secret_key: string
           radius_meters: number
           statut: string
           updated_at: string
@@ -1160,6 +1211,7 @@ export type Database = {
           longitude?: number | null
           maitre_ouvrage?: string | null
           montant_marche?: number
+          qr_secret_key?: string
           radius_meters?: number
           statut?: string
           updated_at?: string
@@ -1179,6 +1231,7 @@ export type Database = {
           longitude?: number | null
           maitre_ouvrage?: string | null
           montant_marche?: number
+          qr_secret_key?: string
           radius_meters?: number
           statut?: string
           updated_at?: string
@@ -1190,6 +1243,38 @@ export type Database = {
             columns: ["client_id"]
             isOneToOne: false
             referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      qr_sessions: {
+        Row: {
+          created_at: string
+          expires_at: string
+          id: string
+          project_id: string
+          token: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at: string
+          id?: string
+          project_id: string
+          token: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string
+          id?: string
+          project_id?: string
+          token?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "qr_sessions_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
             referencedColumns: ["id"]
           },
         ]
@@ -1307,6 +1392,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_devices: {
+        Row: {
+          created_at: string
+          device_fingerprint: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          device_fingerprint: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          device_fingerprint?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
