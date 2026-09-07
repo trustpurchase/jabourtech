@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      appels_offres: {
+        Row: {
+          caution: number
+          created_at: string
+          created_by: string | null
+          date_limite: string | null
+          date_publication: string | null
+          id: string
+          maitre_ouvrage: string | null
+          montant_estime: number
+          notes: string | null
+          numero: string
+          objet: string
+          statut: string
+          updated_at: string
+        }
+        Insert: {
+          caution?: number
+          created_at?: string
+          created_by?: string | null
+          date_limite?: string | null
+          date_publication?: string | null
+          id?: string
+          maitre_ouvrage?: string | null
+          montant_estime?: number
+          notes?: string | null
+          numero: string
+          objet: string
+          statut?: string
+          updated_at?: string
+        }
+        Update: {
+          caution?: number
+          created_at?: string
+          created_by?: string | null
+          date_limite?: string | null
+          date_publication?: string | null
+          id?: string
+          maitre_ouvrage?: string | null
+          montant_estime?: number
+          notes?: string | null
+          numero?: string
+          objet?: string
+          statut?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       articles: {
         Row: {
           created_at: string
@@ -55,6 +103,485 @@ export type Database = {
           stock_alerte?: number
           tva?: number
           unite?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      attachements: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          date_attachement: string
+          id: string
+          montant_ht: number
+          notes: string | null
+          numero: string
+          periode: string | null
+          projet_id: string | null
+          statut: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          date_attachement?: string
+          id?: string
+          montant_ht?: number
+          notes?: string | null
+          numero: string
+          periode?: string | null
+          projet_id?: string | null
+          statut?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          date_attachement?: string
+          id?: string
+          montant_ht?: number
+          notes?: string | null
+          numero?: string
+          periode?: string | null
+          projet_id?: string | null
+          statut?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attachements_projet_id_fkey"
+            columns: ["projet_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      attachements_lignes: {
+        Row: {
+          attachement_id: string
+          created_at: string
+          designation: string
+          id: string
+          ordre: number
+          prix_unitaire: number
+          quantite: number
+          unite: string
+          updated_at: string
+        }
+        Insert: {
+          attachement_id: string
+          created_at?: string
+          designation: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          unite?: string
+          updated_at?: string
+        }
+        Update: {
+          attachement_id?: string
+          created_at?: string
+          designation?: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          unite?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attachements_lignes_attachement_id_fkey"
+            columns: ["attachement_id"]
+            isOneToOne: false
+            referencedRelation: "attachements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bons_commande: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          date_bc: string
+          fournisseur_id: string | null
+          id: string
+          notes: string | null
+          numero: string
+          projet_id: string | null
+          statut: string
+          total_ht: number
+          total_ttc: number
+          total_tva: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          date_bc?: string
+          fournisseur_id?: string | null
+          id?: string
+          notes?: string | null
+          numero: string
+          projet_id?: string | null
+          statut?: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          date_bc?: string
+          fournisseur_id?: string | null
+          id?: string
+          notes?: string | null
+          numero?: string
+          projet_id?: string | null
+          statut?: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bons_commande_fournisseur_id_fkey"
+            columns: ["fournisseur_id"]
+            isOneToOne: false
+            referencedRelation: "fournisseurs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bons_commande_projet_id_fkey"
+            columns: ["projet_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bons_commande_lignes: {
+        Row: {
+          article_id: string | null
+          bon_commande_id: string
+          created_at: string
+          designation: string
+          id: string
+          ordre: number
+          prix_unitaire: number
+          quantite: number
+          tva: number
+          unite: string
+          updated_at: string
+        }
+        Insert: {
+          article_id?: string | null
+          bon_commande_id: string
+          created_at?: string
+          designation: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          tva?: number
+          unite?: string
+          updated_at?: string
+        }
+        Update: {
+          article_id?: string | null
+          bon_commande_id?: string
+          created_at?: string
+          designation?: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          tva?: number
+          unite?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bons_commande_lignes_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bons_commande_lignes_bon_commande_id_fkey"
+            columns: ["bon_commande_id"]
+            isOneToOne: false
+            referencedRelation: "bons_commande"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bons_livraison: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          created_by: string | null
+          date_bl: string
+          id: string
+          notes: string | null
+          numero: string
+          projet_id: string | null
+          statut: string
+          updated_at: string
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_bl?: string
+          id?: string
+          notes?: string | null
+          numero: string
+          projet_id?: string | null
+          statut?: string
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_bl?: string
+          id?: string
+          notes?: string | null
+          numero?: string
+          projet_id?: string | null
+          statut?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bons_livraison_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bons_livraison_projet_id_fkey"
+            columns: ["projet_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bons_livraison_lignes: {
+        Row: {
+          article_id: string | null
+          bon_livraison_id: string
+          created_at: string
+          designation: string
+          id: string
+          ordre: number
+          prix_unitaire: number
+          quantite: number
+          unite: string
+          updated_at: string
+        }
+        Insert: {
+          article_id?: string | null
+          bon_livraison_id: string
+          created_at?: string
+          designation: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          unite?: string
+          updated_at?: string
+        }
+        Update: {
+          article_id?: string | null
+          bon_livraison_id?: string
+          created_at?: string
+          designation?: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          unite?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bons_livraison_lignes_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bons_livraison_lignes_bon_livraison_id_fkey"
+            columns: ["bon_livraison_id"]
+            isOneToOne: false
+            referencedRelation: "bons_livraison"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bons_reception: {
+        Row: {
+          bon_commande_id: string | null
+          created_at: string
+          created_by: string | null
+          date_br: string
+          fournisseur_id: string | null
+          id: string
+          notes: string | null
+          numero: string
+          projet_id: string | null
+          statut: string
+          updated_at: string
+        }
+        Insert: {
+          bon_commande_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_br?: string
+          fournisseur_id?: string | null
+          id?: string
+          notes?: string | null
+          numero: string
+          projet_id?: string | null
+          statut?: string
+          updated_at?: string
+        }
+        Update: {
+          bon_commande_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_br?: string
+          fournisseur_id?: string | null
+          id?: string
+          notes?: string | null
+          numero?: string
+          projet_id?: string | null
+          statut?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bons_reception_bon_commande_id_fkey"
+            columns: ["bon_commande_id"]
+            isOneToOne: false
+            referencedRelation: "bons_commande"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bons_reception_fournisseur_id_fkey"
+            columns: ["fournisseur_id"]
+            isOneToOne: false
+            referencedRelation: "fournisseurs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bons_reception_projet_id_fkey"
+            columns: ["projet_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bons_reception_lignes: {
+        Row: {
+          article_id: string | null
+          bon_reception_id: string
+          created_at: string
+          designation: string
+          id: string
+          ordre: number
+          prix_unitaire: number
+          quantite: number
+          unite: string
+          updated_at: string
+        }
+        Insert: {
+          article_id?: string | null
+          bon_reception_id: string
+          created_at?: string
+          designation: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          unite?: string
+          updated_at?: string
+        }
+        Update: {
+          article_id?: string | null
+          bon_reception_id?: string
+          created_at?: string
+          designation?: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          unite?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bons_reception_lignes_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bons_reception_lignes_bon_reception_id_fkey"
+            columns: ["bon_reception_id"]
+            isOneToOne: false
+            referencedRelation: "bons_reception"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      caisse: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          date_operation: string
+          id: string
+          libelle: string
+          mode: string
+          montant: number
+          reference: string | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          date_operation?: string
+          id?: string
+          libelle: string
+          mode?: string
+          montant?: number
+          reference?: string | null
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          date_operation?: string
+          id?: string
+          libelle?: string
+          mode?: string
+          montant?: number
+          reference?: string | null
+          type?: string
           updated_at?: string
         }
         Relationships: []
@@ -103,6 +630,75 @@ export type Database = {
           ville?: string | null
         }
         Relationships: []
+      }
+      decomptes: {
+        Row: {
+          attachement_id: string | null
+          avance: number
+          created_at: string
+          created_by: string | null
+          date_decompte: string
+          id: string
+          montant_net: number
+          montant_travaux: number
+          notes: string | null
+          numero: string
+          numero_ordre: number
+          projet_id: string | null
+          retenue_garantie: number
+          statut: string
+          updated_at: string
+        }
+        Insert: {
+          attachement_id?: string | null
+          avance?: number
+          created_at?: string
+          created_by?: string | null
+          date_decompte?: string
+          id?: string
+          montant_net?: number
+          montant_travaux?: number
+          notes?: string | null
+          numero: string
+          numero_ordre?: number
+          projet_id?: string | null
+          retenue_garantie?: number
+          statut?: string
+          updated_at?: string
+        }
+        Update: {
+          attachement_id?: string | null
+          avance?: number
+          created_at?: string
+          created_by?: string | null
+          date_decompte?: string
+          id?: string
+          montant_net?: number
+          montant_travaux?: number
+          notes?: string | null
+          numero?: string
+          numero_ordre?: number
+          projet_id?: string | null
+          retenue_garantie?: number
+          statut?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "decomptes_attachement_id_fkey"
+            columns: ["attachement_id"]
+            isOneToOne: false
+            referencedRelation: "attachements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "decomptes_projet_id_fkey"
+            columns: ["projet_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       devis: {
         Row: {
@@ -226,6 +822,234 @@ export type Database = {
             columns: ["devis_id"]
             isOneToOne: false
             referencedRelation: "devis"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      factures: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          created_by: string | null
+          date_echeance: string | null
+          date_facture: string
+          decompte_id: string | null
+          devis_id: string | null
+          id: string
+          montant_paye: number
+          notes: string | null
+          numero: string
+          objet: string | null
+          projet_id: string | null
+          statut: string
+          total_ht: number
+          total_ttc: number
+          total_tva: number
+          updated_at: string
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_echeance?: string | null
+          date_facture?: string
+          decompte_id?: string | null
+          devis_id?: string | null
+          id?: string
+          montant_paye?: number
+          notes?: string | null
+          numero: string
+          objet?: string | null
+          projet_id?: string | null
+          statut?: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_echeance?: string | null
+          date_facture?: string
+          decompte_id?: string | null
+          devis_id?: string | null
+          id?: string
+          montant_paye?: number
+          notes?: string | null
+          numero?: string
+          objet?: string | null
+          projet_id?: string | null
+          statut?: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "factures_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "factures_decompte_id_fkey"
+            columns: ["decompte_id"]
+            isOneToOne: false
+            referencedRelation: "decomptes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "factures_devis_id_fkey"
+            columns: ["devis_id"]
+            isOneToOne: false
+            referencedRelation: "devis"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "factures_projet_id_fkey"
+            columns: ["projet_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      factures_achat: {
+        Row: {
+          bon_reception_id: string | null
+          created_at: string
+          created_by: string | null
+          date_echeance: string | null
+          date_facture: string
+          fournisseur_id: string | null
+          id: string
+          montant_paye: number
+          notes: string | null
+          numero: string
+          projet_id: string | null
+          statut: string
+          total_ht: number
+          total_ttc: number
+          total_tva: number
+          updated_at: string
+        }
+        Insert: {
+          bon_reception_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_echeance?: string | null
+          date_facture?: string
+          fournisseur_id?: string | null
+          id?: string
+          montant_paye?: number
+          notes?: string | null
+          numero: string
+          projet_id?: string | null
+          statut?: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Update: {
+          bon_reception_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_echeance?: string | null
+          date_facture?: string
+          fournisseur_id?: string | null
+          id?: string
+          montant_paye?: number
+          notes?: string | null
+          numero?: string
+          projet_id?: string | null
+          statut?: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "factures_achat_bon_reception_id_fkey"
+            columns: ["bon_reception_id"]
+            isOneToOne: false
+            referencedRelation: "bons_reception"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "factures_achat_fournisseur_id_fkey"
+            columns: ["fournisseur_id"]
+            isOneToOne: false
+            referencedRelation: "fournisseurs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "factures_achat_projet_id_fkey"
+            columns: ["projet_id"]
+            isOneToOne: false
+            referencedRelation: "projets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      factures_lignes: {
+        Row: {
+          article_id: string | null
+          created_at: string
+          designation: string
+          facture_id: string
+          id: string
+          ordre: number
+          prix_unitaire: number
+          quantite: number
+          tva: number
+          unite: string
+          updated_at: string
+        }
+        Insert: {
+          article_id?: string | null
+          created_at?: string
+          designation: string
+          facture_id: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          tva?: number
+          unite?: string
+          updated_at?: string
+        }
+        Update: {
+          article_id?: string | null
+          created_at?: string
+          designation?: string
+          facture_id?: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          tva?: number
+          unite?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "factures_lignes_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "factures_lignes_facture_id_fkey"
+            columns: ["facture_id"]
+            isOneToOne: false
+            referencedRelation: "factures"
             referencedColumns: ["id"]
           },
         ]
@@ -370,6 +1194,120 @@ export type Database = {
           },
         ]
       }
+      reglements_clients: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          created_by: string | null
+          date_reglement: string
+          facture_id: string | null
+          id: string
+          mode: string
+          montant: number
+          notes: string | null
+          reference: string | null
+          updated_at: string
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_reglement?: string
+          facture_id?: string | null
+          id?: string
+          mode?: string
+          montant?: number
+          notes?: string | null
+          reference?: string | null
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_reglement?: string
+          facture_id?: string | null
+          id?: string
+          mode?: string
+          montant?: number
+          notes?: string | null
+          reference?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reglements_clients_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reglements_clients_facture_id_fkey"
+            columns: ["facture_id"]
+            isOneToOne: false
+            referencedRelation: "factures"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reglements_fournisseurs: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          date_reglement: string
+          facture_achat_id: string | null
+          fournisseur_id: string | null
+          id: string
+          mode: string
+          montant: number
+          notes: string | null
+          reference: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          date_reglement?: string
+          facture_achat_id?: string | null
+          fournisseur_id?: string | null
+          id?: string
+          mode?: string
+          montant?: number
+          notes?: string | null
+          reference?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          date_reglement?: string
+          facture_achat_id?: string | null
+          fournisseur_id?: string | null
+          id?: string
+          mode?: string
+          montant?: number
+          notes?: string | null
+          reference?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reglements_fournisseurs_facture_achat_id_fkey"
+            columns: ["facture_achat_id"]
+            isOneToOne: false
+            referencedRelation: "factures_achat"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reglements_fournisseurs_fournisseur_id_fkey"
+            columns: ["fournisseur_id"]
+            isOneToOne: false
+            referencedRelation: "fournisseurs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -390,6 +1328,119 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      ventes_comptoir: {
+        Row: {
+          client_id: string | null
+          client_nom: string | null
+          created_at: string
+          created_by: string | null
+          date_vente: string
+          id: string
+          mode_paiement: string
+          notes: string | null
+          numero: string
+          total_ht: number
+          total_ttc: number
+          total_tva: number
+          updated_at: string
+        }
+        Insert: {
+          client_id?: string | null
+          client_nom?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_vente?: string
+          id?: string
+          mode_paiement?: string
+          notes?: string | null
+          numero: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string | null
+          client_nom?: string | null
+          created_at?: string
+          created_by?: string | null
+          date_vente?: string
+          id?: string
+          mode_paiement?: string
+          notes?: string | null
+          numero?: string
+          total_ht?: number
+          total_ttc?: number
+          total_tva?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ventes_comptoir_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ventes_comptoir_lignes: {
+        Row: {
+          article_id: string | null
+          created_at: string
+          designation: string
+          id: string
+          ordre: number
+          prix_unitaire: number
+          quantite: number
+          tva: number
+          unite: string
+          updated_at: string
+          vente_id: string
+        }
+        Insert: {
+          article_id?: string | null
+          created_at?: string
+          designation: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          tva?: number
+          unite?: string
+          updated_at?: string
+          vente_id: string
+        }
+        Update: {
+          article_id?: string | null
+          created_at?: string
+          designation?: string
+          id?: string
+          ordre?: number
+          prix_unitaire?: number
+          quantite?: number
+          tva?: number
+          unite?: string
+          updated_at?: string
+          vente_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ventes_comptoir_lignes_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ventes_comptoir_lignes_vente_id_fkey"
+            columns: ["vente_id"]
+            isOneToOne: false
+            referencedRelation: "ventes_comptoir"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
