@@ -29,6 +29,7 @@ import { Route as AuthenticatedProjetsRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedReglementsClientsRouteImport } from './routes/_authenticated/reglements-clients'
 import { Route as AuthenticatedReglementsFournisseursRouteImport } from './routes/_authenticated/reglements-fournisseurs'
 import { Route as AuthenticatedTableauDeBordRouteImport } from './routes/_authenticated/tableau-de-bord'
+import { Route as AuthenticatedVenteComptoirRouteImport } from './routes/_authenticated/vente-comptoir'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -139,6 +140,12 @@ const AuthenticatedTableauDeBordRoute =
     path: '/tableau-de-bord',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedVenteComptoirRoute =
+  AuthenticatedVenteComptoirRouteImport.update({
+    id: '/vente-comptoir',
+    path: '/vente-comptoir',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
   '/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -181,6 +189,7 @@ export interface FileRoutesByTo {
   '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
   '/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -204,6 +213,7 @@ export interface FileRoutesById {
   '/_authenticated/reglements-clients': typeof AuthenticatedReglementsClientsRoute
   '/_authenticated/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
   '/_authenticated/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/_authenticated/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/reglements-clients'
     | '/reglements-fournisseurs'
     | '/tableau-de-bord'
+    | '/vente-comptoir'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/reglements-clients'
     | '/reglements-fournisseurs'
     | '/tableau-de-bord'
+    | '/vente-comptoir'
   id:
     | '__root__'
     | '/'
@@ -270,6 +282,7 @@ export interface FileRouteTypes {
     | '/_authenticated/reglements-clients'
     | '/_authenticated/reglements-fournisseurs'
     | '/_authenticated/tableau-de-bord'
+    | '/_authenticated/vente-comptoir'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -420,6 +433,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTableauDeBordRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/vente-comptoir': {
+      id: '/_authenticated/vente-comptoir'
+      path: '/vente-comptoir'
+      fullPath: '/vente-comptoir'
+      preLoaderRoute: typeof AuthenticatedVenteComptoirRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -441,6 +461,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedReglementsClientsRoute: typeof AuthenticatedReglementsClientsRoute
   AuthenticatedReglementsFournisseursRoute: typeof AuthenticatedReglementsFournisseursRoute
   AuthenticatedTableauDeBordRoute: typeof AuthenticatedTableauDeBordRoute
+  AuthenticatedVenteComptoirRoute: typeof AuthenticatedVenteComptoirRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -462,6 +483,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedReglementsFournisseursRoute:
     AuthenticatedReglementsFournisseursRoute,
   AuthenticatedTableauDeBordRoute: AuthenticatedTableauDeBordRoute,
+  AuthenticatedVenteComptoirRoute: AuthenticatedVenteComptoirRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
