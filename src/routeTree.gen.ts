@@ -12,12 +12,25 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedAppelsOffresRouteImport } from './routes/_authenticated/appels-offres'
 import { Route as AuthenticatedArticlesRouteImport } from './routes/_authenticated/articles'
+import { Route as AuthenticatedAttachementsRouteImport } from './routes/_authenticated/attachements'
+import { Route as AuthenticatedBonsCommandeRouteImport } from './routes/_authenticated/bons-commande'
+import { Route as AuthenticatedBonsLivraisonRouteImport } from './routes/_authenticated/bons-livraison'
+import { Route as AuthenticatedBonsReceptionRouteImport } from './routes/_authenticated/bons-reception'
+import { Route as AuthenticatedCaisseRouteImport } from './routes/_authenticated/caisse'
 import { Route as AuthenticatedClientsRouteImport } from './routes/_authenticated/clients'
+import { Route as AuthenticatedDecomptesRouteImport } from './routes/_authenticated/decomptes'
 import { Route as AuthenticatedDevisRouteImport } from './routes/_authenticated/devis'
+import { Route as AuthenticatedFacturesRouteImport } from './routes/_authenticated/factures'
+import { Route as AuthenticatedFacturesAchatRouteImport } from './routes/_authenticated/factures-achat'
 import { Route as AuthenticatedFournisseursRouteImport } from './routes/_authenticated/fournisseurs'
 import { Route as AuthenticatedProjetsRouteImport } from './routes/_authenticated/projets'
+import { Route as AuthenticatedReglementsClientsRouteImport } from './routes/_authenticated/reglements-clients'
+import { Route as AuthenticatedReglementsFournisseursRouteImport } from './routes/_authenticated/reglements-fournisseurs'
+import { Route as AuthenticatedStockRouteImport } from './routes/_authenticated/stock'
 import { Route as AuthenticatedTableauDeBordRouteImport } from './routes/_authenticated/tableau-de-bord'
+import { Route as AuthenticatedVenteComptoirRouteImport } from './routes/_authenticated/vente-comptoir'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,9 +46,44 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAppelsOffresRoute =
+  AuthenticatedAppelsOffresRouteImport.update({
+    id: '/appels-offres',
+    path: '/appels-offres',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedArticlesRoute = AuthenticatedArticlesRouteImport.update({
   id: '/articles',
   path: '/articles',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAttachementsRoute =
+  AuthenticatedAttachementsRouteImport.update({
+    id: '/attachements',
+    path: '/attachements',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBonsCommandeRoute =
+  AuthenticatedBonsCommandeRouteImport.update({
+    id: '/bons-commande',
+    path: '/bons-commande',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBonsLivraisonRoute =
+  AuthenticatedBonsLivraisonRouteImport.update({
+    id: '/bons-livraison',
+    path: '/bons-livraison',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBonsReceptionRoute =
+  AuthenticatedBonsReceptionRouteImport.update({
+    id: '/bons-reception',
+    path: '/bons-reception',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCaisseRoute = AuthenticatedCaisseRouteImport.update({
+  id: '/caisse',
+  path: '/caisse',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedClientsRoute = AuthenticatedClientsRouteImport.update({
@@ -43,11 +91,27 @@ const AuthenticatedClientsRoute = AuthenticatedClientsRouteImport.update({
   path: '/clients',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDecomptesRoute = AuthenticatedDecomptesRouteImport.update({
+  id: '/decomptes',
+  path: '/decomptes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDevisRoute = AuthenticatedDevisRouteImport.update({
   id: '/devis',
   path: '/devis',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedFacturesRoute = AuthenticatedFacturesRouteImport.update({
+  id: '/factures',
+  path: '/factures',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFacturesAchatRoute =
+  AuthenticatedFacturesAchatRouteImport.update({
+    id: '/factures-achat',
+    path: '/factures-achat',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedFournisseursRoute =
   AuthenticatedFournisseursRouteImport.update({
     id: '/fournisseurs',
@@ -59,77 +123,178 @@ const AuthenticatedProjetsRoute = AuthenticatedProjetsRouteImport.update({
   path: '/projets',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedReglementsClientsRoute =
+  AuthenticatedReglementsClientsRouteImport.update({
+    id: '/reglements-clients',
+    path: '/reglements-clients',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReglementsFournisseursRoute =
+  AuthenticatedReglementsFournisseursRouteImport.update({
+    id: '/reglements-fournisseurs',
+    path: '/reglements-fournisseurs',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedStockRoute = AuthenticatedStockRouteImport.update({
+  id: '/stock',
+  path: '/stock',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTableauDeBordRoute =
   AuthenticatedTableauDeBordRouteImport.update({
     id: '/tableau-de-bord',
     path: '/tableau-de-bord',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedVenteComptoirRoute =
+  AuthenticatedVenteComptoirRouteImport.update({
+    id: '/vente-comptoir',
+    path: '/vente-comptoir',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/articles': typeof AuthenticatedArticlesRoute
+  '/attachements': typeof AuthenticatedAttachementsRoute
+  '/bons-commande': typeof AuthenticatedBonsCommandeRoute
+  '/bons-livraison': typeof AuthenticatedBonsLivraisonRoute
+  '/bons-reception': typeof AuthenticatedBonsReceptionRoute
+  '/caisse': typeof AuthenticatedCaisseRoute
   '/clients': typeof AuthenticatedClientsRoute
+  '/decomptes': typeof AuthenticatedDecomptesRoute
   '/devis': typeof AuthenticatedDevisRoute
+  '/factures': typeof AuthenticatedFacturesRoute
+  '/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
   '/projets': typeof AuthenticatedProjetsRoute
+  '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
+  '/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
+  '/stock': typeof AuthenticatedStockRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/articles': typeof AuthenticatedArticlesRoute
+  '/attachements': typeof AuthenticatedAttachementsRoute
+  '/bons-commande': typeof AuthenticatedBonsCommandeRoute
+  '/bons-livraison': typeof AuthenticatedBonsLivraisonRoute
+  '/bons-reception': typeof AuthenticatedBonsReceptionRoute
+  '/caisse': typeof AuthenticatedCaisseRoute
   '/clients': typeof AuthenticatedClientsRoute
+  '/decomptes': typeof AuthenticatedDecomptesRoute
   '/devis': typeof AuthenticatedDevisRoute
+  '/factures': typeof AuthenticatedFacturesRoute
+  '/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/fournisseurs': typeof AuthenticatedFournisseursRoute
   '/projets': typeof AuthenticatedProjetsRoute
+  '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
+  '/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
+  '/stock': typeof AuthenticatedStockRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/appels-offres': typeof AuthenticatedAppelsOffresRoute
   '/_authenticated/articles': typeof AuthenticatedArticlesRoute
+  '/_authenticated/attachements': typeof AuthenticatedAttachementsRoute
+  '/_authenticated/bons-commande': typeof AuthenticatedBonsCommandeRoute
+  '/_authenticated/bons-livraison': typeof AuthenticatedBonsLivraisonRoute
+  '/_authenticated/bons-reception': typeof AuthenticatedBonsReceptionRoute
+  '/_authenticated/caisse': typeof AuthenticatedCaisseRoute
   '/_authenticated/clients': typeof AuthenticatedClientsRoute
+  '/_authenticated/decomptes': typeof AuthenticatedDecomptesRoute
   '/_authenticated/devis': typeof AuthenticatedDevisRoute
+  '/_authenticated/factures': typeof AuthenticatedFacturesRoute
+  '/_authenticated/factures-achat': typeof AuthenticatedFacturesAchatRoute
   '/_authenticated/fournisseurs': typeof AuthenticatedFournisseursRoute
   '/_authenticated/projets': typeof AuthenticatedProjetsRoute
+  '/_authenticated/reglements-clients': typeof AuthenticatedReglementsClientsRoute
+  '/_authenticated/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
+  '/_authenticated/stock': typeof AuthenticatedStockRoute
   '/_authenticated/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/_authenticated/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/auth'
+    | '/appels-offres'
     | '/articles'
+    | '/attachements'
+    | '/bons-commande'
+    | '/bons-livraison'
+    | '/bons-reception'
+    | '/caisse'
     | '/clients'
+    | '/decomptes'
     | '/devis'
+    | '/factures'
+    | '/factures-achat'
     | '/fournisseurs'
     | '/projets'
+    | '/reglements-clients'
+    | '/reglements-fournisseurs'
+    | '/stock'
     | '/tableau-de-bord'
+    | '/vente-comptoir'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
+    | '/appels-offres'
     | '/articles'
+    | '/attachements'
+    | '/bons-commande'
+    | '/bons-livraison'
+    | '/bons-reception'
+    | '/caisse'
     | '/clients'
+    | '/decomptes'
     | '/devis'
+    | '/factures'
+    | '/factures-achat'
     | '/fournisseurs'
     | '/projets'
+    | '/reglements-clients'
+    | '/reglements-fournisseurs'
+    | '/stock'
     | '/tableau-de-bord'
+    | '/vente-comptoir'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/appels-offres'
     | '/_authenticated/articles'
+    | '/_authenticated/attachements'
+    | '/_authenticated/bons-commande'
+    | '/_authenticated/bons-livraison'
+    | '/_authenticated/bons-reception'
+    | '/_authenticated/caisse'
     | '/_authenticated/clients'
+    | '/_authenticated/decomptes'
     | '/_authenticated/devis'
+    | '/_authenticated/factures'
+    | '/_authenticated/factures-achat'
     | '/_authenticated/fournisseurs'
     | '/_authenticated/projets'
+    | '/_authenticated/reglements-clients'
+    | '/_authenticated/reglements-fournisseurs'
+    | '/_authenticated/stock'
     | '/_authenticated/tableau-de-bord'
+    | '/_authenticated/vente-comptoir'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -161,11 +326,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/appels-offres': {
+      id: '/_authenticated/appels-offres'
+      path: '/appels-offres'
+      fullPath: '/appels-offres'
+      preLoaderRoute: typeof AuthenticatedAppelsOffresRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/articles': {
       id: '/_authenticated/articles'
       path: '/articles'
       fullPath: '/articles'
       preLoaderRoute: typeof AuthenticatedArticlesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/attachements': {
+      id: '/_authenticated/attachements'
+      path: '/attachements'
+      fullPath: '/attachements'
+      preLoaderRoute: typeof AuthenticatedAttachementsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bons-commande': {
+      id: '/_authenticated/bons-commande'
+      path: '/bons-commande'
+      fullPath: '/bons-commande'
+      preLoaderRoute: typeof AuthenticatedBonsCommandeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bons-livraison': {
+      id: '/_authenticated/bons-livraison'
+      path: '/bons-livraison'
+      fullPath: '/bons-livraison'
+      preLoaderRoute: typeof AuthenticatedBonsLivraisonRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/bons-reception': {
+      id: '/_authenticated/bons-reception'
+      path: '/bons-reception'
+      fullPath: '/bons-reception'
+      preLoaderRoute: typeof AuthenticatedBonsReceptionRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/caisse': {
+      id: '/_authenticated/caisse'
+      path: '/caisse'
+      fullPath: '/caisse'
+      preLoaderRoute: typeof AuthenticatedCaisseRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/clients': {
@@ -175,11 +382,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedClientsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/decomptes': {
+      id: '/_authenticated/decomptes'
+      path: '/decomptes'
+      fullPath: '/decomptes'
+      preLoaderRoute: typeof AuthenticatedDecomptesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/devis': {
       id: '/_authenticated/devis'
       path: '/devis'
       fullPath: '/devis'
       preLoaderRoute: typeof AuthenticatedDevisRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/factures': {
+      id: '/_authenticated/factures'
+      path: '/factures'
+      fullPath: '/factures'
+      preLoaderRoute: typeof AuthenticatedFacturesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/factures-achat': {
+      id: '/_authenticated/factures-achat'
+      path: '/factures-achat'
+      fullPath: '/factures-achat'
+      preLoaderRoute: typeof AuthenticatedFacturesAchatRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/fournisseurs': {
@@ -196,6 +424,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProjetsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/reglements-clients': {
+      id: '/_authenticated/reglements-clients'
+      path: '/reglements-clients'
+      fullPath: '/reglements-clients'
+      preLoaderRoute: typeof AuthenticatedReglementsClientsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reglements-fournisseurs': {
+      id: '/_authenticated/reglements-fournisseurs'
+      path: '/reglements-fournisseurs'
+      fullPath: '/reglements-fournisseurs'
+      preLoaderRoute: typeof AuthenticatedReglementsFournisseursRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/stock': {
+      id: '/_authenticated/stock'
+      path: '/stock'
+      fullPath: '/stock'
+      preLoaderRoute: typeof AuthenticatedStockRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/tableau-de-bord': {
       id: '/_authenticated/tableau-de-bord'
       path: '/tableau-de-bord'
@@ -203,25 +452,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTableauDeBordRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/vente-comptoir': {
+      id: '/_authenticated/vente-comptoir'
+      path: '/vente-comptoir'
+      fullPath: '/vente-comptoir'
+      preLoaderRoute: typeof AuthenticatedVenteComptoirRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAppelsOffresRoute: typeof AuthenticatedAppelsOffresRoute
   AuthenticatedArticlesRoute: typeof AuthenticatedArticlesRoute
+  AuthenticatedAttachementsRoute: typeof AuthenticatedAttachementsRoute
+  AuthenticatedBonsCommandeRoute: typeof AuthenticatedBonsCommandeRoute
+  AuthenticatedBonsLivraisonRoute: typeof AuthenticatedBonsLivraisonRoute
+  AuthenticatedBonsReceptionRoute: typeof AuthenticatedBonsReceptionRoute
+  AuthenticatedCaisseRoute: typeof AuthenticatedCaisseRoute
   AuthenticatedClientsRoute: typeof AuthenticatedClientsRoute
+  AuthenticatedDecomptesRoute: typeof AuthenticatedDecomptesRoute
   AuthenticatedDevisRoute: typeof AuthenticatedDevisRoute
+  AuthenticatedFacturesRoute: typeof AuthenticatedFacturesRoute
+  AuthenticatedFacturesAchatRoute: typeof AuthenticatedFacturesAchatRoute
   AuthenticatedFournisseursRoute: typeof AuthenticatedFournisseursRoute
   AuthenticatedProjetsRoute: typeof AuthenticatedProjetsRoute
+  AuthenticatedReglementsClientsRoute: typeof AuthenticatedReglementsClientsRoute
+  AuthenticatedReglementsFournisseursRoute: typeof AuthenticatedReglementsFournisseursRoute
+  AuthenticatedStockRoute: typeof AuthenticatedStockRoute
   AuthenticatedTableauDeBordRoute: typeof AuthenticatedTableauDeBordRoute
+  AuthenticatedVenteComptoirRoute: typeof AuthenticatedVenteComptoirRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAppelsOffresRoute: AuthenticatedAppelsOffresRoute,
   AuthenticatedArticlesRoute: AuthenticatedArticlesRoute,
+  AuthenticatedAttachementsRoute: AuthenticatedAttachementsRoute,
+  AuthenticatedBonsCommandeRoute: AuthenticatedBonsCommandeRoute,
+  AuthenticatedBonsLivraisonRoute: AuthenticatedBonsLivraisonRoute,
+  AuthenticatedBonsReceptionRoute: AuthenticatedBonsReceptionRoute,
+  AuthenticatedCaisseRoute: AuthenticatedCaisseRoute,
   AuthenticatedClientsRoute: AuthenticatedClientsRoute,
+  AuthenticatedDecomptesRoute: AuthenticatedDecomptesRoute,
   AuthenticatedDevisRoute: AuthenticatedDevisRoute,
+  AuthenticatedFacturesRoute: AuthenticatedFacturesRoute,
+  AuthenticatedFacturesAchatRoute: AuthenticatedFacturesAchatRoute,
   AuthenticatedFournisseursRoute: AuthenticatedFournisseursRoute,
   AuthenticatedProjetsRoute: AuthenticatedProjetsRoute,
+  AuthenticatedReglementsClientsRoute: AuthenticatedReglementsClientsRoute,
+  AuthenticatedReglementsFournisseursRoute:
+    AuthenticatedReglementsFournisseursRoute,
+  AuthenticatedStockRoute: AuthenticatedStockRoute,
   AuthenticatedTableauDeBordRoute: AuthenticatedTableauDeBordRoute,
+  AuthenticatedVenteComptoirRoute: AuthenticatedVenteComptoirRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

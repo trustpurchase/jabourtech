@@ -9,20 +9,71 @@ import {
   LogOut,
   HardHat,
   Menu,
+  Gavel,
+  ShoppingCart,
+  PackageCheck,
+  ReceiptText,
+  Ruler,
+  Calculator,
+  Wallet,
+  Store,
+  BarChart3,
+  Banknote,
+  ClipboardList,
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-const nav = [
-  { to: "/tableau-de-bord", label: "Tableau de bord", icon: LayoutDashboard },
-  { to: "/projets", label: "Projets", icon: FolderKanban },
-  { to: "/clients", label: "Clients", icon: Users },
-  { to: "/devis", label: "Devis", icon: FileText },
-  { to: "/fournisseurs", label: "Fournisseurs", icon: Truck },
-  { to: "/articles", label: "Articles & Stock", icon: Package },
+const navGroups = [
+  {
+    label: "",
+    items: [{ to: "/tableau-de-bord", label: "Tableau de bord", icon: LayoutDashboard }],
+  },
+  {
+    label: "Projets",
+    items: [
+      { to: "/projets", label: "Projets", icon: FolderKanban },
+      { to: "/devis", label: "Devis", icon: FileText },
+      { to: "/bons-livraison", label: "Bons de livraison", icon: ClipboardList },
+      { to: "/attachements", label: "Attachements", icon: Ruler },
+      { to: "/decomptes", label: "Décomptes", icon: Calculator },
+      { to: "/factures", label: "Factures", icon: ReceiptText },
+      { to: "/clients", label: "Clients", icon: Users },
+    ],
+  },
+  {
+    label: "Appel d'offre",
+    items: [{ to: "/appels-offres", label: "Préparation appel offre", icon: Gavel }],
+  },
+  {
+    label: "Achats",
+    items: [
+      { to: "/bons-commande", label: "Bons de commande", icon: ShoppingCart },
+      { to: "/bons-reception", label: "Bons de réception", icon: PackageCheck },
+      { to: "/factures-achat", label: "Factures d'achat", icon: ReceiptText },
+      { to: "/fournisseurs", label: "Fournisseurs", icon: Truck },
+    ],
+  },
+  {
+    label: "Stock",
+    items: [
+      { to: "/articles", label: "Articles", icon: Package },
+      { to: "/stock", label: "État de stock", icon: BarChart3 },
+    ],
+  },
+  {
+    label: "Ventes & Finances",
+    items: [
+      { to: "/vente-comptoir", label: "Vente au comptoir", icon: Store },
+      { to: "/reglements-clients", label: "Règlements clients", icon: Banknote },
+      { to: "/reglements-fournisseurs", label: "Règlements fourn.", icon: Banknote },
+      { to: "/caisse", label: "Caisse", icon: Wallet },
+    ],
+  },
 ] as const;
+
 
 export function AppLayout() {
   const { user, roles, signOut } = useAuth();
@@ -44,27 +95,37 @@ export function AppLayout() {
             <p className="text-xs text-sidebar-foreground/60">Gestion & Chantiers</p>
           </div>
         </div>
-        <nav className="flex-1 space-y-1 px-3 py-4">
-          {nav.map((item) => {
-            const active = pathname.startsWith(item.to);
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-                  active
-                    ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
-                    : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground",
-                )}
-              >
-                <item.icon className="h-4 w-4" />
-                {item.label}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
+          {navGroups.map((group, gi) => (
+            <div key={group.label || `g${gi}`} className="space-y-1">
+              {group.label ? (
+                <p className="px-3 pb-1 text-[11px] font-medium tracking-wide text-sidebar-foreground/45 uppercase">
+                  {group.label}
+                </p>
+              ) : null}
+              {group.items.map((item) => {
+                const active = pathname.startsWith(item.to);
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+                      active
+                        ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
+                        : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground",
+                    )}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
         </nav>
+
         <div className="border-t border-sidebar-border px-4 py-3 text-xs">
           <p className="truncate font-medium">{user?.email}</p>
           <p className="text-sidebar-foreground/60">{roles.join(", ") || "—"}</p>
