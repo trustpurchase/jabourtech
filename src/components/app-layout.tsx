@@ -20,6 +20,10 @@ import {
   BarChart3,
   Banknote,
   ClipboardList,
+  QrCode,
+  MonitorSmartphone,
+  CalendarClock,
+
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
