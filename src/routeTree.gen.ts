@@ -28,6 +28,7 @@ import { Route as AuthenticatedFournisseursRouteImport } from './routes/_authent
 import { Route as AuthenticatedProjetsRouteImport } from './routes/_authenticated/projets'
 import { Route as AuthenticatedReglementsClientsRouteImport } from './routes/_authenticated/reglements-clients'
 import { Route as AuthenticatedReglementsFournisseursRouteImport } from './routes/_authenticated/reglements-fournisseurs'
+import { Route as AuthenticatedStockRouteImport } from './routes/_authenticated/stock'
 import { Route as AuthenticatedTableauDeBordRouteImport } from './routes/_authenticated/tableau-de-bord'
 import { Route as AuthenticatedVenteComptoirRouteImport } from './routes/_authenticated/vente-comptoir'
 
@@ -134,6 +135,11 @@ const AuthenticatedReglementsFournisseursRoute =
     path: '/reglements-fournisseurs',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedStockRoute = AuthenticatedStockRouteImport.update({
+  id: '/stock',
+  path: '/stock',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTableauDeBordRoute =
   AuthenticatedTableauDeBordRouteImport.update({
     id: '/tableau-de-bord',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/projets': typeof AuthenticatedProjetsRoute
   '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
   '/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
+  '/stock': typeof AuthenticatedStockRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
   '/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
@@ -188,6 +195,7 @@ export interface FileRoutesByTo {
   '/projets': typeof AuthenticatedProjetsRoute
   '/reglements-clients': typeof AuthenticatedReglementsClientsRoute
   '/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
+  '/stock': typeof AuthenticatedStockRoute
   '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
   '/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
@@ -212,6 +220,7 @@ export interface FileRoutesById {
   '/_authenticated/projets': typeof AuthenticatedProjetsRoute
   '/_authenticated/reglements-clients': typeof AuthenticatedReglementsClientsRoute
   '/_authenticated/reglements-fournisseurs': typeof AuthenticatedReglementsFournisseursRoute
+  '/_authenticated/stock': typeof AuthenticatedStockRoute
   '/_authenticated/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
   '/_authenticated/vente-comptoir': typeof AuthenticatedVenteComptoirRoute
 }
@@ -236,6 +245,7 @@ export interface FileRouteTypes {
     | '/projets'
     | '/reglements-clients'
     | '/reglements-fournisseurs'
+    | '/stock'
     | '/tableau-de-bord'
     | '/vente-comptoir'
   fileRoutesByTo: FileRoutesByTo
@@ -258,6 +268,7 @@ export interface FileRouteTypes {
     | '/projets'
     | '/reglements-clients'
     | '/reglements-fournisseurs'
+    | '/stock'
     | '/tableau-de-bord'
     | '/vente-comptoir'
   id:
@@ -281,6 +292,7 @@ export interface FileRouteTypes {
     | '/_authenticated/projets'
     | '/_authenticated/reglements-clients'
     | '/_authenticated/reglements-fournisseurs'
+    | '/_authenticated/stock'
     | '/_authenticated/tableau-de-bord'
     | '/_authenticated/vente-comptoir'
   fileRoutesById: FileRoutesById
@@ -426,6 +438,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedReglementsFournisseursRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/stock': {
+      id: '/_authenticated/stock'
+      path: '/stock'
+      fullPath: '/stock'
+      preLoaderRoute: typeof AuthenticatedStockRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/tableau-de-bord': {
       id: '/_authenticated/tableau-de-bord'
       path: '/tableau-de-bord'
@@ -460,6 +479,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedProjetsRoute: typeof AuthenticatedProjetsRoute
   AuthenticatedReglementsClientsRoute: typeof AuthenticatedReglementsClientsRoute
   AuthenticatedReglementsFournisseursRoute: typeof AuthenticatedReglementsFournisseursRoute
+  AuthenticatedStockRoute: typeof AuthenticatedStockRoute
   AuthenticatedTableauDeBordRoute: typeof AuthenticatedTableauDeBordRoute
   AuthenticatedVenteComptoirRoute: typeof AuthenticatedVenteComptoirRoute
 }
@@ -482,6 +502,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedReglementsClientsRoute: AuthenticatedReglementsClientsRoute,
   AuthenticatedReglementsFournisseursRoute:
     AuthenticatedReglementsFournisseursRoute,
+  AuthenticatedStockRoute: AuthenticatedStockRoute,
   AuthenticatedTableauDeBordRoute: AuthenticatedTableauDeBordRoute,
   AuthenticatedVenteComptoirRoute: AuthenticatedVenteComptoirRoute,
 }

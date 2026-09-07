@@ -9,20 +9,71 @@ import {
   LogOut,
   HardHat,
   Menu,
+  Gavel,
+  ShoppingCart,
+  PackageCheck,
+  ReceiptText,
+  Ruler,
+  Calculator,
+  Wallet,
+  Store,
+  BarChart3,
+  Banknote,
+  ClipboardList,
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-const nav = [
-  { to: "/tableau-de-bord", label: "Tableau de bord", icon: LayoutDashboard },
-  { to: "/projets", label: "Projets", icon: FolderKanban },
-  { to: "/clients", label: "Clients", icon: Users },
-  { to: "/devis", label: "Devis", icon: FileText },
-  { to: "/fournisseurs", label: "Fournisseurs", icon: Truck },
-  { to: "/articles", label: "Articles & Stock", icon: Package },
+const navGroups = [
+  {
+    label: "",
+    items: [{ to: "/tableau-de-bord", label: "Tableau de bord", icon: LayoutDashboard }],
+  },
+  {
+    label: "Projets",
+    items: [
+      { to: "/projets", label: "Projets", icon: FolderKanban },
+      { to: "/devis", label: "Devis", icon: FileText },
+      { to: "/bons-livraison", label: "Bons de livraison", icon: ClipboardList },
+      { to: "/attachements", label: "Attachements", icon: Ruler },
+      { to: "/decomptes", label: "Décomptes", icon: Calculator },
+      { to: "/factures", label: "Factures", icon: ReceiptText },
+      { to: "/clients", label: "Clients", icon: Users },
+    ],
+  },
+  {
+    label: "Appel d'offre",
+    items: [{ to: "/appels-offres", label: "Préparation appel offre", icon: Gavel }],
+  },
+  {
+    label: "Achats",
+    items: [
+      { to: "/bons-commande", label: "Bons de commande", icon: ShoppingCart },
+      { to: "/bons-reception", label: "Bons de réception", icon: PackageCheck },
+      { to: "/factures-achat", label: "Factures d'achat", icon: ReceiptText },
+      { to: "/fournisseurs", label: "Fournisseurs", icon: Truck },
+    ],
+  },
+  {
+    label: "Stock",
+    items: [
+      { to: "/articles", label: "Articles", icon: Package },
+      { to: "/stock", label: "État de stock", icon: BarChart3 },
+    ],
+  },
+  {
+    label: "Ventes & Finances",
+    items: [
+      { to: "/vente-comptoir", label: "Vente au comptoir", icon: Store },
+      { to: "/reglements-clients", label: "Règlements clients", icon: Banknote },
+      { to: "/reglements-fournisseurs", label: "Règlements fourn.", icon: Banknote },
+      { to: "/caisse", label: "Caisse", icon: Wallet },
+    ],
+  },
 ] as const;
+
 
 export function AppLayout() {
   const { user, roles, signOut } = useAuth();
