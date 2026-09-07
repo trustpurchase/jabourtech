@@ -18,6 +18,7 @@ import { Route as AuthenticatedAttachementsRouteImport } from './routes/_authent
 import { Route as AuthenticatedBonsCommandeRouteImport } from './routes/_authenticated/bons-commande'
 import { Route as AuthenticatedBonsLivraisonRouteImport } from './routes/_authenticated/bons-livraison'
 import { Route as AuthenticatedBonsReceptionRouteImport } from './routes/_authenticated/bons-reception'
+import { Route as AuthenticatedCaisseRouteImport } from './routes/_authenticated/caisse'
 import { Route as AuthenticatedClientsRouteImport } from './routes/_authenticated/clients'
 import { Route as AuthenticatedDecomptesRouteImport } from './routes/_authenticated/decomptes'
 import { Route as AuthenticatedDevisRouteImport } from './routes/_authenticated/devis'
@@ -78,6 +79,11 @@ const AuthenticatedBonsReceptionRoute =
     path: '/bons-reception',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedCaisseRoute = AuthenticatedCaisseRouteImport.update({
+  id: '/caisse',
+  path: '/caisse',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedClientsRoute = AuthenticatedClientsRouteImport.update({
   id: '/clients',
   path: '/clients',
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/bons-commande': typeof AuthenticatedBonsCommandeRoute
   '/bons-livraison': typeof AuthenticatedBonsLivraisonRoute
   '/bons-reception': typeof AuthenticatedBonsReceptionRoute
+  '/caisse': typeof AuthenticatedCaisseRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/decomptes': typeof AuthenticatedDecomptesRoute
   '/devis': typeof AuthenticatedDevisRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/bons-commande': typeof AuthenticatedBonsCommandeRoute
   '/bons-livraison': typeof AuthenticatedBonsLivraisonRoute
   '/bons-reception': typeof AuthenticatedBonsReceptionRoute
+  '/caisse': typeof AuthenticatedCaisseRoute
   '/clients': typeof AuthenticatedClientsRoute
   '/decomptes': typeof AuthenticatedDecomptesRoute
   '/devis': typeof AuthenticatedDevisRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/_authenticated/bons-commande': typeof AuthenticatedBonsCommandeRoute
   '/_authenticated/bons-livraison': typeof AuthenticatedBonsLivraisonRoute
   '/_authenticated/bons-reception': typeof AuthenticatedBonsReceptionRoute
+  '/_authenticated/caisse': typeof AuthenticatedCaisseRoute
   '/_authenticated/clients': typeof AuthenticatedClientsRoute
   '/_authenticated/decomptes': typeof AuthenticatedDecomptesRoute
   '/_authenticated/devis': typeof AuthenticatedDevisRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/bons-commande'
     | '/bons-livraison'
     | '/bons-reception'
+    | '/caisse'
     | '/clients'
     | '/decomptes'
     | '/devis'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/bons-commande'
     | '/bons-livraison'
     | '/bons-reception'
+    | '/caisse'
     | '/clients'
     | '/decomptes'
     | '/devis'
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/_authenticated/bons-commande'
     | '/_authenticated/bons-livraison'
     | '/_authenticated/bons-reception'
+    | '/_authenticated/caisse'
     | '/_authenticated/clients'
     | '/_authenticated/decomptes'
     | '/_authenticated/devis'
@@ -331,6 +343,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedBonsReceptionRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/caisse': {
+      id: '/_authenticated/caisse'
+      path: '/caisse'
+      fullPath: '/caisse'
+      preLoaderRoute: typeof AuthenticatedCaisseRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/clients': {
       id: '/_authenticated/clients'
       path: '/clients'
@@ -411,6 +430,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedBonsCommandeRoute: typeof AuthenticatedBonsCommandeRoute
   AuthenticatedBonsLivraisonRoute: typeof AuthenticatedBonsLivraisonRoute
   AuthenticatedBonsReceptionRoute: typeof AuthenticatedBonsReceptionRoute
+  AuthenticatedCaisseRoute: typeof AuthenticatedCaisseRoute
   AuthenticatedClientsRoute: typeof AuthenticatedClientsRoute
   AuthenticatedDecomptesRoute: typeof AuthenticatedDecomptesRoute
   AuthenticatedDevisRoute: typeof AuthenticatedDevisRoute
@@ -430,6 +450,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBonsCommandeRoute: AuthenticatedBonsCommandeRoute,
   AuthenticatedBonsLivraisonRoute: AuthenticatedBonsLivraisonRoute,
   AuthenticatedBonsReceptionRoute: AuthenticatedBonsReceptionRoute,
+  AuthenticatedCaisseRoute: AuthenticatedCaisseRoute,
   AuthenticatedClientsRoute: AuthenticatedClientsRoute,
   AuthenticatedDecomptesRoute: AuthenticatedDecomptesRoute,
   AuthenticatedDevisRoute: AuthenticatedDevisRoute,
