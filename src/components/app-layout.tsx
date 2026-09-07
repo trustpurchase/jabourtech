@@ -95,27 +95,37 @@ export function AppLayout() {
             <p className="text-xs text-sidebar-foreground/60">Gestion & Chantiers</p>
           </div>
         </div>
-        <nav className="flex-1 space-y-1 px-3 py-4">
-          {nav.map((item) => {
-            const active = pathname.startsWith(item.to);
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-                  active
-                    ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
-                    : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground",
-                )}
-              >
-                <item.icon className="h-4 w-4" />
-                {item.label}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
+          {navGroups.map((group, gi) => (
+            <div key={group.label || `g${gi}`} className="space-y-1">
+              {group.label ? (
+                <p className="px-3 pb-1 text-[11px] font-medium tracking-wide text-sidebar-foreground/45 uppercase">
+                  {group.label}
+                </p>
+              ) : null}
+              {group.items.map((item) => {
+                const active = pathname.startsWith(item.to);
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+                      active
+                        ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
+                        : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground",
+                    )}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          ))}
         </nav>
+
         <div className="border-t border-sidebar-border px-4 py-3 text-xs">
           <p className="truncate font-medium">{user?.email}</p>
           <p className="text-sidebar-foreground/60">{roles.join(", ") || "—"}</p>
