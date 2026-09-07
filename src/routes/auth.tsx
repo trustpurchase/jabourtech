@@ -43,7 +43,10 @@ function AuthPage() {
     setBusy(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     navigate({ to: "/tableau-de-bord" });
   }
 
@@ -59,7 +62,10 @@ function AuthPage() {
       },
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("Compte créé. Vous pouvez vous connecter.");
   }
 
@@ -67,10 +73,14 @@ function AuthPage() {
     const result = await lovable.auth.signInWithOAuth("google", {
       redirect_uri: window.location.origin,
     });
-    if (result.error) return toast.error("Connexion Google impossible pour le moment.");
+    if (result.error) {
+      toast.error("Connexion Google impossible pour le moment.");
+      return;
+    }
     if (result.redirected) return;
     navigate({ to: "/tableau-de-bord" });
   }
+
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-secondary px-4 py-10">
