@@ -72,7 +72,16 @@ const navGroups = [
       { to: "/caisse", label: "Caisse", icon: Wallet },
     ],
   },
+  {
+    label: "Pointage",
+    items: [
+      { to: "/pointage", label: "Pointage ouvrier", icon: QrCode },
+      { to: "/pointage-ecran", label: "Écran QR chantier", icon: MonitorSmartphone },
+      { to: "/presences", label: "Registre présences", icon: CalendarClock },
+    ],
+  },
 ] as const;
+
 
 
 export function AppLayout() {
