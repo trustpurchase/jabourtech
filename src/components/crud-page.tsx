@@ -86,7 +86,7 @@ export function CrudPage({
         .select(select)
         .order(orderBy, { ascending: false });
       if (error) throw error;
-      return (data ?? []) as Row[];
+      return (data ?? []) as unknown as Row[];
     },
   });
 
